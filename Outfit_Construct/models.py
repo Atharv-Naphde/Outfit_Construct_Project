@@ -75,8 +75,9 @@ class ClothDetails(models.Model):
     # The column below does not exist in the database or test data, and is used only to enure proper functioning of the django model.
     cloth_details_id = models.TextField(blank=True, primary_key=True)
     # use makemigrations to fix any errors.
-    cloth_id = models.ForeignKey(Clothes, on_delete=models.CASCADE, db_column='cloth_id')
-    image = models.TextField(blank=True, null=True)  # This field type is a guess.
+    cloth_id = models.ForeignKey("Clothes", on_delete=models.CASCADE, db_column='cloth_id')
+    # image = models.TextField(blank=True, null=True)  # This field type is a guess.
+    image = models.ImageField(blank=True, null=True, upload_to="images/")
 
     class Meta:
         managed = False

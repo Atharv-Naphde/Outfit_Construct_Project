@@ -1,0 +1,76 @@
+body {
+    background-color: #313131;
+  }
+h1 {
+    color: white;
+  }
+h2 {
+    color: white;
+}
+h3 {
+  color: white;
+}
+h4 {
+  color: white;
+}
+.titleText {
+    color: #fcc018;
+  }
+p {
+    color: white;
+  }
+label {
+    color: white;
+}
+.jumbotron {
+  Background-image: url('./images/outfit_construct_gradient.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  color: #FFF;
+
+}
+.homepage{
+  background-repeat: no-repeat;
+}
+.giant{
+  font-size: 50px;
+}
+.big{
+  font-size: 25px;
+}
+.medium{
+  font-size: 20px;
+}
+.mini{
+  max-width: 80px;
+  max-height: 80px;
+}
+.plainLink{
+  text-decoration : none;
+  color: aliceblue;
+}
+.searchbox{
+  background-color: #313131;
+  color: aliceblue;
+}
+
+@media (max-width: 720px) {
+    .homepage {
+        width: 95%;
+        height: auto;
+    }
+    .jumbotron{
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+    .reccommended{
+      max-width: 70%;
+      max-height: auto;
+    }
+    .searchPage{
+      max-width: 50%;
+      max-height: auto;
+    }
+}

@@ -2,7 +2,7 @@ from django.urls import path
 
 from Outfit_Construct import views
 urlpatterns = [
-    path("Outfit_Construct/", views.temp_here, name = "temp_here"),
+    path("Outfit_Construct/", views.home, name = "home"),
     path("Outfit_Construct/random/drawer", views.random_drawer, name = "random_drawer"),
     path("Outfit_Construct/random/clothes", views.random_clothes, name = "random_clothes"),
 path("Outfit_Construct/random/colour", views.random_colour, name = "random_colour"),

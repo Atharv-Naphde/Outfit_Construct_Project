@@ -5,7 +5,7 @@ from Outfit_Construct.models import Drawers, Clothes, Colours, Hexcodes, Palette
 
 
 # Create your views here.
-def temp_here(request):
+def home(request):
     template = loader.get_template('index.html')
     temp = "Temp Function"
     context = {'temp' : temp}
@@ -35,7 +35,7 @@ def random_colour(request):
 
 def random_hexcode(request):
     random_item = Hexcodes.objects.all().order_by('?').first()
-    description = random_item.hexcode
+    description = random_item.hexcode #colour_id
     template = loader.get_template('index.html')
     context = {'temp' : description}
     return HttpResponse(template.render(context, request))

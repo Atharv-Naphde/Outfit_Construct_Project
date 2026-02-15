@@ -18,6 +18,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (Outfit_Construct_Project)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="5410f4c7f8" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
