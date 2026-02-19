@@ -23,7 +23,7 @@ label {
     color: white;
 }
 .jumbotron {
-  Background-image: url('./images/outfit_construct_gradient.png');
+  Background-image: url('images/outfit_construct_gradient.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -53,6 +53,9 @@ label {
 .searchbox{
   background-color: #313131;
   color: aliceblue;
+}
+.clothTile{
+    max-width: 200px;
 }
 
 @media (max-width: 720px) {

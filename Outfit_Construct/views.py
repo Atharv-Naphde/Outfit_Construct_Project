@@ -7,8 +7,32 @@ from Outfit_Construct.models import Drawers, Clothes, Colours, Hexcodes, Palette
 # Create your views here.
 def home(request):
     template = loader.get_template('index.html')
+    random_clothes = Clothes.objects.all().order_by('?')
+    cloth1 = random_clothes[0]
+    cloth2 = random_clothes[1]
+    cloth3 = random_clothes[2]
+    random_palette = Palette.objects.all().order_by('?')
+    palette1 = random_palette[0]
+    palette2 = random_palette[1]
+    palette3 = random_palette[2]
     temp = "Temp Function"
-    context = {'temp' : temp}
+    placeholder_link = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    context = {
+        'temp' : temp,
+        'cloth1_link' : placeholder_link,
+        'cloth1_name' : cloth1.cloth_description,
+        'cloth2_link' : placeholder_link,
+        'cloth2_name' : cloth2.cloth_description,
+        'cloth3_link' : placeholder_link,
+        'cloth3_name' : cloth3.cloth_description,
+
+        'palette1_link' : placeholder_link,
+        'palette1_name' : palette1.palette_description,
+        'palette2_link' : placeholder_link,
+        'palette2_name' : palette2.palette_description,
+        'palette3_link' : placeholder_link,
+        'palette3_name' : palette3.palette_description,
+    }
     return HttpResponse(template.render(context, request))
 
 
@@ -23,7 +47,9 @@ def random_clothes(request):
     random_item = Clothes.objects.all().order_by('?').first()
     description = random_item.cloth_description
     template = loader.get_template('index.html')
-    context = {'temp' : description}
+    context = {
+        'temp' : description
+    }
     return HttpResponse(template.render(context, request))
 
 def random_colour(request):
