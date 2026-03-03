@@ -39,9 +39,7 @@ class Palette(models.Model):
         db_table = 'palette'
 
 class PaletteList(models.Model):
-    # palette_id = models.TextField(blank=True, primary_key=True) # This field type is a guess.
-    # The column below does not exist in the database or test data, and is used only to enure proper functioning of the django model.
-    palette_list_id = models.TextField(blank=True, primary_key=True)
+    palette_list_id = models.IntegerField(blank=True, primary_key=True)
     # use makemigrations to fix any errors.
     palette_id = models.ForeignKey(Palette, on_delete=models.CASCADE, db_column='palette_id')
     colour = models.ForeignKey(Colours, on_delete=models.CASCADE, db_column='colour')

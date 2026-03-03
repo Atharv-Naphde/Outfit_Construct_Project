@@ -8,7 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles.css' %}"/>
     <script src="https://kit.fontawesome.com/5410f4c7f8.js" crossorigin="anonymous"></script>
-
+    <script>
+        const searchParams = new URLSearchParams(window.location.search);//gets the url parameters
+        let searchTerm = searchParams.get('cloth_id');
+    </script>
     <title>Outfit Construct</title>
 </head>
 <body lang = en>
@@ -44,60 +47,56 @@
         </div>  -->
         <br>
         <br>
-        <div class="row p-2 card bg-dark homepage">
-            <h3>Today's Picks</h3>
-        </div>
-        <br>
-        <div class="row p-2">
-            <!-- Change variable input parameters to ensure the links are correct-->
-            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth1_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{cloth1_name}}</h3>
-                </a>
-            </div>
-            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth2_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{cloth2_name}}</h3>
-                </a>
-            </div>
-            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth3_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{cloth3_name}}</h3>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!--The code below displays favourites-->
-
-    <!--The code below is used to display images for the Top Trending section-->
-    <div class="container  mb3 homepage">
-        <div class="row p-2 card bg-dark homepage"> <a href = '{% url 'random_palette' %}' class = 'plainLink reccommended'>
-            <h3 class = "plainLink">Explore Palettes</h3>
-        </a>
-        </div>
-        <br>
+        <div class="container mb-3">
         <div class="row">
-            <div class="col-lg-4 reccommended"><a href ='{{palette1_link}}' class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{palette1_name}}</h3>
-                <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
-                </a>
+            <div class = "col-lg-3">
+
             </div>
-            <div class="col-lg-4 reccommended"> <a href = '{{palette2_link}}' class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{palette2_name}}</h3>
-                </a>
+            <div class = "col-lg-6 card bg-dark p-3">
+                <div class = "row">
+                    <div class = "col-lg-5 p-4" id="showImage">
+                        {{ image }}
+                    </div>
+                <div class = "col-lg-6 p-4" id="showDescription">
+                    <p>
+                        {{ colour }}
+                        {{ hexcode }}
+                        {{ cloth_description }}
+                        {{ palettes }}
+                    </p>
+                </div>
+                <div class = "row">
+                    <div class = "col" id="showSummary">
+                        <p>
+                        {{ colour }}
+                        {{ hexcode }}
+                        {{ palettes }}
+                    </p>
+                    </div>
+                    <div id="back-to-results">
+
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="col-lg-4 reccommended"> <a href = '{{palette3_link}}' class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                <h3 class = "clothTile">{{palette3_name}}</h3>
-                </a>
+            <div class = "col-lg-3">
             </div>
         </div>
+        <br>
+        <br>
+            <div class="row p-2 card bg-dark homepage">
+                {% for outfit in outfit_suggestions %}
+                    <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
+                        <div class = "col-lg-3">
+                        {{ outfit.cloth_description }}
+                        {{ outfit.colour_id }}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+        </div>
     </div>
-    <br>
-    <br>
     <h1>Value stored in temp function : {{temp}}</h1>
     <p>
         <ul>
