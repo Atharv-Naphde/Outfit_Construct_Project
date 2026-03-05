@@ -1,0 +1,33 @@
+{% extends 'edit_template.html' %}
+
+{% block content %}
+    <!-- Change the path in action if you want a user to be redirected. -->
+    <form action = "" method = "post">
+    {% csrf_token %}
+        {{ form }}
+            <input type="submit" value = "Create Clothing">
+        <!--
+        <label>Drawer ID:
+                <input type="text" id="drawer_id" class = "center" placeholder="Enter drawer ID" name="drawer_id" required>
+        </label>
+        <label>Layer ID:
+                <input type="text" id="layer_id" class = "center" placeholder="Enter layer ID" name="layer_id" required>
+        </label>
+        <label>colour:
+                <input type="text" id="colour" class = "center" placeholder="Enter colour" name="colour" required>
+        </label>
+        <label>hexcode:
+                <input type="text" id="hexcode" class = "center" placeholder="Enter hexcode" name="hexcode" required>
+        </label>
+        <label>Item type:
+                <input type="text" id="item_type" class = "center" placeholder="Enter type of clothing" name="item_type" required>
+        </label>
+        <label>Short description:
+                <input type="text" id="cloth_description" class = "center" placeholder="Enter a short description" name="cloth_description" required>
+        </label>
+        <label>
+            <input type="submit" value = "Create Clothing">
+        </label>
+        -->
+    </form>
+{% endblock %}

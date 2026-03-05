@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/5410f4c7f8.js" crossorigin="anonymous"></script>
     <script>
         const searchParams = new URLSearchParams(window.location.search);//gets the url parameters
-        let searchTerm = searchParams.get('cloth_id');
+        let searchTerm = searchParams.get('palette_id');
     </script>
     <title>Outfit Construct</title>
 </head>
@@ -59,13 +59,17 @@
                     </div>
                 <div class = "col-lg-6 p-4" id="showDescription">
                     <br>
-                    <h3>{{ cloth_description }}</h3>
+                    <h3>{{ palette_description }}</h3>
                     <br>
-                    <p>Colour: {{ colour }} ({{ hexcode }})</p>
-                    <p>Palette: {{ palettes }}</p>
+                <p>Colours in palette:</p>
+                    {% for colour in colours %}
+                        <p>{{ colour.colour_id }}</p>
+                    {% endfor %}
+                    <!--
                     <a href = "{% url 'edit_clothing' %}">
                     <button class = button>Edit Clothing</button>
                     </a>
+                    -->
                 </div>
                 </div>
             </div>
@@ -75,38 +79,32 @@
         <br>
         <br>
 
-         <div class="container mb-3">
-                <h1>Clothes that match:</h1>
-         <br>
-                {% for outfit in outfit_suggestions %}
-                        <div class="row p-2 card bg-dark homepage">
-                            <div class="col-lg-6 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
-                                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
-                                </a>
-                            </div>
-                            <div class="col-lg-2 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
-                            <h3 class = "clothTile plainLink">{{outfit.cloth_description }}</h3>
-                            </a>
-                            </div>
-                        </div>
-
-                    <br>
-                {% endfor %}
+         <!--The code below is used to display images for the Top Trending section-->
+    <div class="container  mb3 homepage">
+        <div class="row p-2 card bg-dark homepage"> <a href = '{% url 'random_palette' %}' class = 'plainLink reccommended'>
+            <h3 class = "plainLink">Explore Other Palettes</h3>
+        </a>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 reccommended"><a href = "{% url 'selected_palette' %}?palette_id={{palette1_link}}" class = 'plainLink reccommended'>
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <h3 class = "clothTile">{{palette1_name}}</h3>
+                <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
+                </a>
+            </div>
+            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette2_link}}" class = 'plainLink reccommended'>
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <h3 class = "clothTile">{{palette2_name}}</h3>
+                </a>
+            </div>
+            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette3_link}}" class = 'plainLink reccommended'>
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <h3 class = "clothTile">{{palette3_name}}</h3>
+                </a>
+            </div>
         </div>
     </div>
-    <h1>Value stored in temp function : {{temp}}</h1>
-    <p>
-        <ul>
-        <li><a href = "{% url 'home' %}">Home </a></li>
-        <li><a href = "{% url 'random_drawer' %}"> Check a random Drawer</a></li>
-        <li><a href = "{% url 'random_clothes' %}"> Check a random Clothing</a></li>
-        <li><a href = "{% url 'random_colour' %}"> Check a random Colour</a></li>
-        <li><a href = "{% url 'random_hexcode' %}"> Check a random Hexcode</a></li>
-        <li><a href = "{% url 'random_palette' %}"> Check a random Colour Palette</a></li>
-        <li><a href = "{% url 'random_list' %}"> Check a random Palette List</a></li>
-        <li><a href = "{% url 'random_layer' %}"> Check a random Layer</a></li>
-        </ul>
-    </p>
+        </div>
 </body>
 </html>

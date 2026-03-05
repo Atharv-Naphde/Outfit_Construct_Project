@@ -4,7 +4,7 @@ from django.db.models import CASCADE
 
 # Create your models here.
 class Drawers(models.Model):
-    drawer_id = models.AutoField(blank=True, primary_key=True)  # This field type is a guess.
+    drawer_id = models.IntegerField(blank=True, primary_key=True)  # This field type is a guess.
     max_capacity = models.IntegerField(blank=True, null=True)  # This field type is a guess.
     drawer_type = models.TextField(blank=True, null=True)  # This field type is a guess.
     drawer_description = models.TextField(blank=True, null=True, max_length=50)  # This field type is a guess.
@@ -65,13 +65,15 @@ class Clothes(models.Model):
     item_type = models.TextField(blank=True, null=True, max_length=6)
     cloth_description = models.TextField(blank=True, null=True, max_length=50)
     deleted_at = models.DateField
+    #image = models.ImageField(blank=True, null=True, upload_to="images/")
     class Meta:
         managed = False
         db_table = 'clothes'
 
+
 class ClothDetails(models.Model):
     # The column below does not exist in the database or test data, and is used only to enure proper functioning of the django model.
-    cloth_details_id = models.TextField(blank=True, primary_key=True)
+    cloth_details_id = models.IntegerField(blank=True, primary_key=True)
     # use makemigrations to fix any errors.
     cloth_id = models.ForeignKey("Clothes", on_delete=models.CASCADE, db_column='cloth_id')
     # image = models.TextField(blank=True, null=True)  # This field type is a guess.

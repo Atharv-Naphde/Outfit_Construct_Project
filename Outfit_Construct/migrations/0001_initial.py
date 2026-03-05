@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ClothDetails',
             fields=[
-                ('cloth_details_id', models.TextField(blank=True, primary_key=True, serialize=False)),
+                ('cloth_details_id', models.IntegerField(blank=True, primary_key=True, serialize=False)),
             ],
             options={
                 'db_table': 'cloth_details',
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Drawers',
             fields=[
-                ('drawer_id', models.AutoField(primary_key=True, serialize=False)),
+                ('drawer_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('max_capacity', models.IntegerField(blank=True, null=True)),
                 ('drawer_type', models.TextField(blank=True, null=True)),
                 ('drawer_description', models.TextField(blank=True, max_length=50, null=True)),
@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PaletteList',
             fields=[
-                ('palette_list_id', models.TextField(blank=True, primary_key=True, serialize=False)),
+                ('palette_list_id', models.IntegerField(blank=True, primary_key=True, serialize=False)),
             ],
             options={
                 'db_table': 'palette_list',

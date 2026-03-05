@@ -30,7 +30,7 @@
                 </li>
                 <li class="nav-item">
                     <!--This is the link to the search page. Include Search for Shows and Arists-->
-                    <a class="nav-link" href="{% url 'createPage' %}">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-shirt"></i>Create</a>
+                    <a class="nav-link" href="{% url 'createPage' %}">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-shirt"></i>Closet</a>
                 </li>
             </ul>
         </div>
@@ -78,18 +78,18 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-lg-4 reccommended"><a href ='{{palette1_link}}' class = 'plainLink reccommended'>
+            <div class="col-lg-4 reccommended"><a href = "{% url 'selected_palette' %}?palette_id={{palette1_link}}" class = 'plainLink reccommended'>
                 <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
                 <h3 class = "clothTile">{{palette1_name}}</h3>
                 <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
                 </a>
             </div>
-            <div class="col-lg-4 reccommended"> <a href = '{{palette2_link}}' class = 'plainLink reccommended'>
+            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette2_link}}" class = 'plainLink reccommended'>
                 <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
                 <h3 class = "clothTile">{{palette2_name}}</h3>
                 </a>
             </div>
-            <div class="col-lg-4 reccommended"> <a href = '{{palette3_link}}' class = 'plainLink reccommended'>
+            <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette3_link}}" class = 'plainLink reccommended'>
                 <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
                 <h3 class = "clothTile">{{palette3_name}}</h3>
                 </a>

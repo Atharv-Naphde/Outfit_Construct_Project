@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+    <script src="https://kit.fontawesome.com/5410f4c7f8.js" crossorigin="anonymous"></script>
+    <title>Outfit Construct</title>
+</head>
+<body>
+    <div  class="container">
+        <div class="row">
+            <div class = "col-lg-6 card bg-dark p-3">
+                <div class = "row login-box">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
