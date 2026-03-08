@@ -63,8 +63,11 @@
                     <br>
                     <p>Colour: {{ colour }} ({{ hexcode }})</p>
                     <p>Palette: {{ palettes }}</p>
-                    <a href = "{% url 'edit_clothing' %}">
+                    <a href = "{% url 'edit_clothing' %}?cloth_id={{ cloth_id }}">
                     <button class = button>Edit Clothing</button>
+                    </a>
+                    <a href = "{% url 'delete_clothing' %}?cloth_id={{ cloth_id }}">
+                    <button class = button>Delete Clothing</button>
                     </a>
                 </div>
                 </div>

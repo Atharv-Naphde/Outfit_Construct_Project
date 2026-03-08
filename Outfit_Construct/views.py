@@ -1,11 +1,16 @@
+import datetime
+
 from django.http import HttpResponse,Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
+from pymysql.constants.FIELD_TYPE import NULL
+
 from Outfit_Construct.models import Drawers, Clothes, Colours, Hexcodes, Palette, PaletteList, Layers
 from django import forms
 #User creation and editing forms
 class clothesForm (forms.ModelForm):
-    cloth_id = forms.IntegerField()
+    #Invalid choice error occurs when selecting drawer ID and layer ID. remove from here and add this functionality elsewhere
+    cloth_id = forms.CharField()
     drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all(), required=False)
     layer_id = forms.ModelChoiceField(queryset=Layers.objects.all(), required=False)
     colour = forms.ModelChoiceField(queryset=Colours.objects.all())
@@ -15,7 +20,21 @@ class clothesForm (forms.ModelForm):
     class Meta:
         model = Clothes
         fields = "__all__"  # or list fields explicitly for security
-       # exclude = ['cloth_id']
+        #exclude = ['drawer_id','layer_id']
+
+class clothesEditForm (forms.ModelForm):
+    #Invalid choice error occurs when selecting drawer ID and layer ID. remove from here and add this functionality elsewhere
+    drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all(), required=False)
+    layer_id = forms.ModelChoiceField(queryset=Layers.objects.all(), required=False)
+    colour = forms.ModelChoiceField(queryset=Colours.objects.all())
+    hexcode = forms.ModelChoiceField(queryset=Hexcodes.objects.all())
+    item_type = forms.CharField()
+    cloth_description = forms.CharField(initial='')
+    class Meta:
+        model = Clothes
+        #fields = "__all__"  # or list fields explicitly for security
+        exclude = ['cloth_id'] #, 'drawer_id', 'layer_id'
+
 
 # Create your views here.
 def home(request):
@@ -49,9 +68,37 @@ def home(request):
     }
     return HttpResponse(template.render(context, request))
 
-def edit_clothing(request):
-    template = loader.get_template('edit_clothing.html')
+
+
+def delete_clothing(request):
+    template = loader.get_template('create.html')
+    if request.method == "GET":
+        cloth_id = request.GET.get('cloth_id')
+        cloth = Clothes.objects.get(cloth_id=cloth_id)
+        # cloth.deleted_at=datetime.time # for setting the deleted at field
+        cloth.delete()
+    else:
+        cloth_id = "404:does not exist"
     context = {}
+    return redirect('home')
+
+
+def edit_clothing(request):
+    # use this function to assign drawers.
+    template = loader.get_template('edit_clothing.html')
+    #This currently redirects to the user creation form.
+    if request.GET.get('cloth_id'):
+        cloth_id = request.GET.get('cloth_id')
+    else:
+        cloth_id = "1"
+    cloth = Clothes.objects.get(cloth_id = cloth_id)
+    form = clothesEditForm(request.POST, instance = cloth)
+    #drawer = Drawers.objects.get(drawer_id=)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
     return HttpResponse(template.render(context, request))
 
 def create_clothing(request):
@@ -60,6 +107,7 @@ def create_clothing(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            created_clothing = Clothes.objects.get(cloth_id = request.POST.get("cloth_id"))
         """
         #print(Drawers.objects.get(drawer_id = 1))
         #print(Drawers.objects.get(drawer_id=1).drawer_id)
@@ -153,9 +201,15 @@ def selected_clothing(request):
     cloth_query = Clothes.objects.raw("select * from clothes where cloth_id = '"+cloth_id+"'")
     cloth = cloth_query[0]
     drawer_query = Drawers.objects.raw("select * from main.drawers where drawer_id = '"+str(cloth.drawer_id_id)+"'")
-    drawer = drawer_query[0].drawer_description
+    if (str(cloth.drawer_id_id) == 'None'):
+        drawer = 'Not Set'
+    else:
+        drawer = drawer_query[0].drawer_description
     layer_query = Layers.objects.raw("select * from main.layers where layer_id = '"+str(cloth.layer_id_id)+"'")
-    layer = layer_query[0].layer_description
+    if (str(cloth.layer_id_id) == 'None'):
+        layer = 'Not Set'
+    else:
+        layer = layer_query[0].layer_description
     #The code for image cannot be tested as the images are not currently in the database.
     image="Placeholder image"
     palette_query = PaletteList.objects.raw("select * from main.palette_list where colour = '"+str(cloth.colour_id)+"'")
@@ -182,6 +236,7 @@ def selected_clothing(request):
         'image' : image,
         'palettes' : palettes,
         'outfit_suggestions' : outfit_suggestions,
+        'cloth_id' : cloth_id,
                }
     return HttpResponse(template.render(context, request))
 

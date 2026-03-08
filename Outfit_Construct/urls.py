@@ -8,7 +8,7 @@ urlpatterns = [
     path("Outfit_Construct/clothing/edit", views.edit_clothing, name = "edit_clothing"),
     path("Outfit_Construct/clothing/create", views.create_clothing, name = "create_clothing"),
     path("Outfit_Construct/palette", views.selected_palette, name = "selected_palette"),
-
+    path("Outfit_Construct/clothing/delete", views.delete_clothing, name = "delete_clothing"),
 
     path("Outfit_Construct/random/drawer", views.random_drawer, name = "random_drawer"),
     path("Outfit_Construct/random/clothes", views.random_clothes, name = "random_clothes"),
