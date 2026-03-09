@@ -97,6 +97,7 @@ def edit_clothing(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            return redirect('selected_clothing')
 
     context = {'form': form}
     return HttpResponse(template.render(context, request))
@@ -242,49 +243,40 @@ def selected_clothing(request):
 
 
 def createPage(request):
-    template = loader.get_template('testing.html')
-    #clothes_mapping = {'cloth_description': 'cloth_description',}
-    # clothes = Clothes.objects.raw("Select clothes.cloth_id, clothes.cloth_description from main.clothes")
-    clothes = Clothes.objects.raw("Select clothes.cloth_id, clothes.cloth_description, layers.layer_description, clothes.layer_id from main.clothes join main.layers using (layer_id)") #test this
-    #translations=clothes_mapping
-    #temp = Clothes.objects.raw("Select * from main.clothes")
+    template = loader.get_template('create.html')
+    drawers = Drawers.objects.all()
     context = {
-        'cloth' : clothes
+        'drawers' : drawers,
+        'count' : 0,
     }
     #for p in Clothes.objects.raw("Select clothes.cloth_id, layers.layer_description, clothes.cloth_description, clothes.hexcode, clothes.colour, clothes.drawer_id from clothes join layers where clothes.layer_id = layers.layer_id"):
         #print(p)
     return HttpResponse(template.render(context, request))
 
-def createPage2(request):
-    template = loader.get_template('create.html')
-    random_clothes = Clothes.objects.all().order_by('?')
-    cloth1 = random_clothes[0]
-    cloth2 = random_clothes[1]
-    cloth3 = random_clothes[2]
-    random_palette = Palette.objects.all().order_by('?')
-    palette1 = random_palette[0]
-    palette2 = random_palette[1]
-    palette3 = random_palette[2]
-    temp = "Temp Function"
-    placeholder_link = "4"
+def clothing_home(request):
+    template = loader.get_template('clothing_home.html')
+    clothes = Clothes.objects.all()
     context = {
-        'temp': temp,
-        'cloth1_link': placeholder_link,
-        'cloth1_name': cloth1.cloth_description,
-        'cloth2_link': placeholder_link,
-        'cloth2_name': cloth2.cloth_description,
-        'cloth3_link': placeholder_link,
-        'cloth3_name': cloth3.cloth_description,
-
-        'palette1_link': placeholder_link,
-        'palette1_name': palette1.palette_description,
-        'palette2_link': placeholder_link,
-        'palette2_name': palette2.palette_description,
-        'palette3_link': placeholder_link,
-        'palette3_name': palette3.palette_description,
+        'drawers': clothes
     }
     return HttpResponse(template.render(context, request))
 
+def palette_home(request):
+    template = loader.get_template('palette_home.html')
+    palette = Palette.objects.all()
+    context = {
+        'drawers': palette
+    }
+    return HttpResponse(template.render(context, request))
+
+def selected_drawer(request):
+    template = loader.get_template('selected_drawer.html')
+    drawer_id = request.GET.get('drawer_id')
+    clothes = Clothes.objects.raw("Select * from clothes where drawer_id = '"+str(drawer_id)+"'")
+    context = {
+        'drawers' : clothes
+    }
+    return HttpResponse(template.render(context, request))
 
 def random_drawer(request):
     random_item = Drawers.objects.all().order_by('?').first()

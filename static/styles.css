@@ -1,6 +1,9 @@
 body {
     background-color: #313131;
   }
+a {
+    text-decoration: none; !important;
+}
 h1 {
     color: white;
   }
@@ -47,7 +50,7 @@ label {
   max-height: 80px;
 }
 .plainLink{
-  text-decoration : none;
+  text-decoration : none; !important;
   color: aliceblue;
 }
 .searchbox{
@@ -56,6 +59,12 @@ label {
 }
 .clothTile{
     max-width: 200px;
+}
+.bottomSpace{
+        margin-bottom: 25px;
+}
+.smallText{
+    font-size: 12px;
 }
 .button{
             width: 70%;

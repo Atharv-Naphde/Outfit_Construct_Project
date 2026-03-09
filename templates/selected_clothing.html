@@ -78,38 +78,18 @@
         <br>
         <br>
 
-         <div class="container mb-3">
                 <h1>Clothes that match:</h1>
          <br>
-                {% for outfit in outfit_suggestions %}
-                        <div class="row p-2 card bg-dark homepage">
-                            <div class="col-lg-6 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
+         <div class="row">
+         {% for outfit in outfit_suggestions %}
+                            <div class="col-3 card bg-dark m-3"> <a href = "{% url 'selected_drawer' %}?drawer_id={{ outfit.cloth_id }}">
                                 <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                                <h3 class = "plainLink smallText">{{outfit.cloth_description}}</h3>
                                 </a>
                             </div>
-                            <div class="col-lg-2 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
-                            <h3 class = "clothTile plainLink">{{outfit.cloth_description }}</h3>
-                            </a>
-                            </div>
-                        </div>
-
-                    <br>
                 {% endfor %}
+          </div>
         </div>
         </div>
-    </div>
-    <h1>Value stored in temp function : {{temp}}</h1>
-    <p>
-        <ul>
-        <li><a href = "{% url 'home' %}">Home </a></li>
-        <li><a href = "{% url 'random_drawer' %}"> Check a random Drawer</a></li>
-        <li><a href = "{% url 'random_clothes' %}"> Check a random Clothing</a></li>
-        <li><a href = "{% url 'random_colour' %}"> Check a random Colour</a></li>
-        <li><a href = "{% url 'random_hexcode' %}"> Check a random Hexcode</a></li>
-        <li><a href = "{% url 'random_palette' %}"> Check a random Colour Palette</a></li>
-        <li><a href = "{% url 'random_list' %}"> Check a random Palette List</a></li>
-        <li><a href = "{% url 'random_layer' %}"> Check a random Layer</a></li>
-        </ul>
-    </p>
 </body>
 </html>
