@@ -109,39 +109,16 @@ def create_clothing(request):
         if form.is_valid():
             form.save()
             created_clothing = Clothes.objects.get(cloth_id = request.POST.get("cloth_id"))
-        """
-        #print(Drawers.objects.get(drawer_id = 1))
-        #print(Drawers.objects.get(drawer_id=1).drawer_id)
-        drawer_id = request.POST.get("drawer_id")
-        layer_id = request.POST.get("layer_id")
-        colour = request.POST.get("colour")
-        hexcode = request.POST.get("hexcode")
-        item_type = request.POST.get("item_type")
-        cloth_description = request.POST.get("cloth_description")
-        #temp = Clothes.objects.get(drawer_id = request.POST.get("drawer_id"))
-        Clothes.objects.raw("insert into clothes (drawer_id , layer_id, colour, hexcode, item_type, cloth_description) values ("+drawer_id+" , "+layer_id+" , "+colour+" , "+hexcode+" , "+item_type+" , "+cloth_description+")")
-        #print(temp[0].cloth_description)
-        
-        Clothes.objects.create(
-            #cloth_id=str(request.POST.get("cloth_id")),
-            drawer_id = str(request.POST.get("drawer_id")),
-            layer_id=str(request.POST.get("layer_id")),
-            colour = str(request.POST.get("colour")),
-            hexcode = str(request.POST.get("hexcode")),
-            item_type = str(request.POST.get("item_type")),
-            cloth_description = str(request.POST.get("cloth_description")),
-        )
-        """
     context = {'form': form}
     return HttpResponse(template.render(context, request))
 
 def outfit_suggest(cloth_id):
     #input cloth id, output a list of clothes that match the selected piece of clothing.
-    cloth_details = Clothes.objects.raw("select * from clothes where cloth_id = '" + cloth_id + "'")
+    cloth_details = Clothes.objects.raw("select * from clothes where cloth_id = '" + str(cloth_id) + "'")
     cloth_colour = str(cloth_details[0].colour_id)
     cloth_layer = str(cloth_details[0].layer_id_id)
     cloth_type = str(cloth_details[0].item_type)
-    valid_layers = Layers.objects.raw("select  * from layers where layer_id != '"+cloth_layer+"'")
+    # valid_layers = Layers.objects.raw("select  * from layers where layer_id != '"+cloth_layer+"'")
     palette_query = PaletteList.objects.raw("select * from main.palette_list where colour = '" + cloth_colour + "'")
     valid_palette_id = []
     i = 0
@@ -151,7 +128,7 @@ def outfit_suggest(cloth_id):
 
     valid_colours = []
     for palette_ids in valid_palette_id:
-        colour_query = PaletteList.objects.raw("select colour, palette_list_id from main.palette_list where palette_id = '"+palette_ids+"'")
+        colour_query = PaletteList.objects.raw("select colour, palette_list_id from main.palette_list where palette_id = '"+str(palette_ids)+"'")
         i = 0
         while i in range(len(colour_query)):
             if colour_query[i].colour_id not in valid_colours:

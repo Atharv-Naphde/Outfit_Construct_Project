@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-tbv3v4v3#kkgu@h(6zme^gd0%+w-$pp8%r=ls%^&tn6u5zsab5
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'outfit-construct.onrender.com'
+'outfit-construct.onrender.com',
+    '127.0.0.1'
 ]
 
 
