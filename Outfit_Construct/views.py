@@ -26,10 +26,10 @@ class clothesEditForm (forms.ModelForm):
     #Invalid choice error occurs when selecting drawer ID and layer ID. remove from here and add this functionality elsewhere
     drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all(), required=False)
     layer_id = forms.ModelChoiceField(queryset=Layers.objects.all(), required=False)
-    colour = forms.ModelChoiceField(queryset=Colours.objects.all())
-    hexcode = forms.ModelChoiceField(queryset=Hexcodes.objects.all())
-    item_type = forms.CharField()
-    cloth_description = forms.CharField(initial='')
+    colour = forms.ModelChoiceField(queryset=Colours.objects.all(), required=False)
+    hexcode = forms.ModelChoiceField(queryset=Hexcodes.objects.all(), required=False)
+    item_type = forms.CharField(required=False)
+    cloth_description = forms.CharField(initial='', required=False)
     class Meta:
         model = Clothes
         #fields = "__all__"  # or list fields explicitly for security
