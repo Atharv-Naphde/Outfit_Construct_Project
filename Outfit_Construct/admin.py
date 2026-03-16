@@ -1,7 +1,5 @@
 from django.contrib import admin
-
-import Outfit_Construct
-from Outfit_Construct.models import *
+from Outfit_Construct.models import Clothes,Drawers,Colours,Layers,Hexcodes,ClothDetails,PaletteList,Palette
 # Register your models here.
 admin.site.register(Clothes)
 admin.site.register(Drawers)

@@ -15,7 +15,7 @@
     <!--The code below is responsible for the Navigation Bar, and should be on every page-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a href="{% url 'home' %}" class="plainLink"><img src="{% static 'images/outfit_construct_logo_transparent.png' %}" width = "150px" height="69px"></a>
+            <a href="{% url 'home' %}" class="plainLink"><img src="{% static 'images/outfit_construct_logo_transparent.png' %}" width = "150px" height="69px" alt="Selected clothing"></a>
         </div>
         <a class="navbar-brand" href="{% url 'home' %}"> </a><!--This could include text in the top right-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,17 +51,17 @@
         <div class="row p-2">
             <!-- Change variable input parameters to ensure the links are correct-->
             <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth1_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Clothing picture">
                 <h3 class = "clothTile">{{cloth1_name}}</h3>
                 </a>
             </div>
             <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth2_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Clothing picture">
                 <h3 class = "clothTile">{{cloth2_name}}</h3>
                 </a>
             </div>
             <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_clothing' %}?cloth_id={{cloth3_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Clothing picture">
                 <h3 class = "clothTile">{{cloth3_name}}</h3>
                 </a>
             </div>
@@ -79,18 +79,18 @@
         <br>
         <div class="row">
             <div class="col-lg-4 reccommended"><a href = "{% url 'selected_palette' %}?palette_id={{palette1_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Template picture">
                 <h3 class = "clothTile">{{palette1_name}}</h3>
                 <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
                 </a>
             </div>
             <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette2_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Template picture">
                 <h3 class = "clothTile">{{palette2_name}}</h3>
                 </a>
             </div>
             <div class="col-lg-4 reccommended"> <a href = "{% url 'selected_palette' %}?palette_id={{palette3_link}}" class = 'plainLink reccommended'>
-                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
+                <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="Template picture">
                 <h3 class = "clothTile">{{palette3_name}}</h3>
                 </a>
             </div>
