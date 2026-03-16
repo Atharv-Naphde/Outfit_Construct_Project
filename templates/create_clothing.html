@@ -1,33 +1,86 @@
-{% extends 'edit_template.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=6.0, user-scalable=yes">
+    <meta charset="utf-8"/>
+    <meta name="description" content="Outfit Construct">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+    <script src="https://kit.fontawesome.com/5410f4c7f8.js" crossorigin="anonymous"></script>
+    <script>
+        const searchParams = new URLSearchParams(window.location.search);//gets the url parameters
+        let searchTerm = searchParams.get('cloth_id');
+    </script>
+    <title>Outfit Construct</title>
+</head>
+<body lang = en>
+    <!--The code below is responsible for the Navigation Bar, and should be on every page-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="{% url 'home' %}" class="plainLink"><img src="{% static 'images/outfit_construct_logo_transparent.png' %}" width = "150px" height="69px"></a>
+        </div>
+        <a class="navbar-brand" href="{% url 'home' %}"> </a><!--This could include text in the top right-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!---This code is responsible for the Icons and Names in the top-right corner.-->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <!--This code redirects to the home page.-->
+                    <a class="nav-link" href="{% url 'home' %}">&nbsp;&nbsp;<i class="fa-solid fa-house"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <!--This is the link to the search page. Include Search for Shows and Arists-->
+                    <a class="nav-link" href="{% url 'createPage' %}">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-shirt"></i>Closet</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-{% block content %}
-    <!-- Change the path in action if you want a user to be redirected. -->
-    <form action = "" method = "post">
-    {% csrf_token %}
-        {{ form }}
-            <input type="submit" value = "Create Clothing" class = 'button'>
-        <!--
-        <label>Drawer ID:
-                <input type="text" id="drawer_id" class = "center" placeholder="Enter drawer ID" name="drawer_id" required>
-        </label>
-        <label>Layer ID:
-                <input type="text" id="layer_id" class = "center" placeholder="Enter layer ID" name="layer_id" required>
-        </label>
-        <label>colour:
-                <input type="text" id="colour" class = "center" placeholder="Enter colour" name="colour" required>
-        </label>
-        <label>hexcode:
-                <input type="text" id="hexcode" class = "center" placeholder="Enter hexcode" name="hexcode" required>
-        </label>
-        <label>Item type:
-                <input type="text" id="item_type" class = "center" placeholder="Enter type of clothing" name="item_type" required>
-        </label>
-        <label>Short description:
-                <input type="text" id="cloth_description" class = "center" placeholder="Enter a short description" name="cloth_description" required>
-        </label>
-        <label>
-            <input type="submit" value = "Create Clothing">
-        </label>
-        -->
-    </form>
-{% endblock %}
+    <!--The code below is responsible for everything displayed on this page-->
+    <!--The code below is responsible for the Trending section-->
+    <div class="container mb-3 homepage">
+        <!--<div class="jumbotron mb-3 p-5">
+            <h2 class="giant">&nbsp; &nbsp;Welcome to Outfit Construct!</h2>
+        </div>  -->
+        <br>
+        <br>
+        <div class="container mb-3">
+        <div class="row">
+            <div class = "col-lg-3">
+
+            </div>
+            <div class = "col-lg-6 card bg-dark p-3">
+                <div class = "row login-box">
+                    <h1>Enter Details:</h1>
+                        <form action = "" method = "post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <br>
+                            <button class = button>Create Clothing</button>
+                        </form>
+                </div>
+            </div>
+            <div class = "col-lg-3">
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
