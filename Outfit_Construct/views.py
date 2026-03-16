@@ -97,7 +97,7 @@ def edit_clothing(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect('selected_clothing')
+            return redirect('createPage')
 
     context = {'form': form}
     return HttpResponse(template.render(context, request))
@@ -109,6 +109,7 @@ def create_clothing(request):
         if form.is_valid():
             form.save()
             created_clothing = Clothes.objects.get(cloth_id = request.POST.get("cloth_id"))
+            return redirect('createPage')
     context = {'form': form}
     return HttpResponse(template.render(context, request))
 
