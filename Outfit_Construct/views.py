@@ -9,7 +9,6 @@ from Outfit_Construct.models import Drawers, Clothes, Colours, Hexcodes, Palette
 from django import forms
 #User creation and editing forms
 class clothesForm (forms.ModelForm):
-    #Invalid choice error occurs when selecting drawer ID and layer ID. remove from here and add this functionality elsewhere
     cloth_id = forms.CharField()
     drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all(), required=False)
     layer_id = forms.ModelChoiceField(queryset=Layers.objects.all(), required=False)
@@ -23,13 +22,12 @@ class clothesForm (forms.ModelForm):
         #exclude = ['drawer_id','layer_id']
 
 class clothesEditForm (forms.ModelForm):
-    #Invalid choice error occurs when selecting drawer ID and layer ID. remove from here and add this functionality elsewhere
-    drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all(), required=False)
-    layer_id = forms.ModelChoiceField(queryset=Layers.objects.all(), required=False)
-    colour = forms.ModelChoiceField(queryset=Colours.objects.all(), required=False)
-    hexcode = forms.ModelChoiceField(queryset=Hexcodes.objects.all(), required=False)
-    item_type = forms.CharField(required=False)
-    cloth_description = forms.CharField(initial='', required=False)
+    drawer_id = forms.ModelChoiceField(queryset=Drawers.objects.all())
+    layer_id = forms.ModelChoiceField(queryset=Layers.objects.all())
+    colour = forms.ModelChoiceField(queryset=Colours.objects.all())
+    hexcode = forms.ModelChoiceField(queryset=Hexcodes.objects.all())
+    item_type = forms.CharField()
+    cloth_description = forms.CharField(initial='')
     class Meta:
         model = Clothes
         #fields = "__all__"  # or list fields explicitly for security
