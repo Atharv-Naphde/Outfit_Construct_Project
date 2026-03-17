@@ -47,7 +47,8 @@ class ViewEverythingTest(TestCase):
         cloth1 = clothes[0].cloth_description
 
     def test_add_clothes(self):
-        Clothes.objects.create(cloth_id='2',drawer_id_id="1",layer_id_id="1",colour_id="White",hexcode_id="#FFFFFF",item_type="bottom",cloth_description="TestCase Cloth Creation Bottom")
+        Clothes.objects.create(cloth_id='2',drawer_id_id="1",layer_id_id="1",colour_id="White",hexcode_id="#FFFFFF",
+                               item_type="bottom",cloth_description="TestCase Cloth Creation Bottom")
 
 
     def test_modify_clothes(self):
@@ -70,7 +71,6 @@ class ViewEverythingTest(TestCase):
 
 
     # Below this comment are test cases where the choices are invalid. These are intended to fail.
-
 
     def test_invalid_outfit_suggestions(self):
         try:

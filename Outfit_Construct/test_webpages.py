@@ -48,9 +48,6 @@ class TutorialTest(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
 
-
-    #Modify these tests
-
     def test_editPage_response(self):
         response = self.client.get(reverse('edit_clothing'))
         self.assertEqual(response.status_code, 200)

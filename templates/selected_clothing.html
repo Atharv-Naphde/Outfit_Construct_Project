@@ -82,7 +82,7 @@
          <br>
          <div class="row">
          {% for outfit in outfit_suggestions %}
-                            <div class="col-3 card bg-dark m-3"> <a href = "{% url 'selected_drawer' %}?drawer_id={{ outfit.cloth_id }}">
+                            <div class="col-3 card bg-dark m-3"> <a href = "{% url 'selected_clothing' %}?cloth_id={{ outfit.cloth_id }}">
                                 <img class="rounded-square" src="{% static 'images/outfit_construct_logo_transparent.png' %}" width="200" height="300" alt="image of the show">
                                 <h3 class = "plainLink smallText">{{outfit.cloth_description}}</h3>
                                 </a>
